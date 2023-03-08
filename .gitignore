@@ -5,3 +5,6 @@ Core/obj/
 Infrastructure/obj/
 Core/bin/
 Infrastructure/bin/
+WebApi/skinet.db-wal
+WebApi/skinet.db-shm
+WebApi/skinet.db
