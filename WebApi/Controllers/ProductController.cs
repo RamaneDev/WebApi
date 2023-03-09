@@ -29,5 +29,17 @@ namespace WebApi.Controllers
         {
             return Ok(await _repo.GetProductsAsync());
         }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProdcutBrands()
+        {
+            return Ok(await _repo.GetProductBrandsAsync());
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProdcutTypes()
+        {
+            return Ok(await _repo.GetProductTypesAsync());
+        }
     }
 }

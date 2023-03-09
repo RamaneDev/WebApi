@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace WebApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +34,7 @@ namespace WebApi
             {
                 var services = scope.ServiceProvider;
 
-                DataSeeder.Initialize(services);
+                await DataSeeder.Initialize(services);
             }
 
             // Configure the HTTP request pipeline.
