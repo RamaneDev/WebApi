@@ -1,2 +1,5 @@
 add migrations :
  - > dotnet ef migrations add InitialCreate -p Infrastructure -s WebApi -o Data/Migrations
+
+apply migration :
+ - > dotnet ef database update -p Infrastructure -s WebApi
