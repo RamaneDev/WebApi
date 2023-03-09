@@ -8,3 +8,5 @@ Infrastructure/bin/
 WebApi/skinet.db-wal
 WebApi/skinet.db-shm
 WebApi/skinet.db
+.vscode/tasks.json
+.vscode/launch.json
