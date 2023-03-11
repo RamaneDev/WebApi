@@ -20,7 +20,7 @@ namespace WebApi
 
             // Add services to the container.
 
-            builder.Services.AddScoped<TestAsyncActionFilter>();
+            builder.Services.AddScoped<TestAsyncActionFilter>();      // for test purposes           
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -52,9 +52,9 @@ namespace WebApi
 
             app.UseAuthorization();
 
-            app.UseTestMLW();
+            app.UseTestMLW();        // for test purposes
 
-            app.UseTestMLW2();
+            app.UseTestMLW2();       // for test purposes
 
             app.MapControllers();
 

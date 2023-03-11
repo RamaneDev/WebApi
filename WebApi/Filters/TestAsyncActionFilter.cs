@@ -12,18 +12,16 @@ namespace WebApi.Filters
         public TestAsyncActionFilter(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger("TestAsyncActionFilter");
-
-
         }
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var actionName = context.ActionDescriptor.DisplayName;
             
-            _logger.LogInformation(string.Format("TestAsyncActionFilter executing.. before : {0} action", actionName));
+            _logger.LogInformation(string.Format("TestAsyncActionFilter executing.. before : {0}", actionName));
 
             await next();
 
-            _logger.LogInformation(string.Format("TestAsyncActionFilter executing.. after : {0} action", actionName));
+            _logger.LogInformation(string.Format("TestAsyncActionFilter executing.. after : {0}", actionName));
 
         }
     }
