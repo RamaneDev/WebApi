@@ -11,7 +11,7 @@ using WebApi.Dtos;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]  
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository _repo;
