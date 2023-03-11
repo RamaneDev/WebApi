@@ -12,8 +12,7 @@ using WebApi.Filters;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [ServiceFilter(typeof(TestAsyncActionFilter))]
+    [Route("api/[controller]")]   
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository _repo;
@@ -42,6 +41,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(TestAsyncActionFilter))]
         public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProdcuts()
         {
             var spec = new ProductsWithTypesAndBrandsSpecification();
