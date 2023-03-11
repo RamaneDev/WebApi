@@ -22,9 +22,6 @@ namespace WebApi
 
             builder.Services.AddScoped<TestAsyncActionFilter>();
             builder.Services.AddControllers();
-            builder.Services.AddControllers(op  => {
-                op.Filters.Add<TestAsyncActionFilter>();
-            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();

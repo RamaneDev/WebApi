@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApi.Dtos;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]  
+    [Route("api/[controller]")]
+    [ServiceFilter(typeof(TestAsyncActionFilter))]
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository _repo;
