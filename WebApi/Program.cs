@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
+using WebApi.Extensions;
 using WebApi.Helpers;
 
 namespace WebApi
@@ -48,6 +49,10 @@ namespace WebApi
             app.UseStaticFiles();
 
             app.UseAuthorization();
+
+            app.UseTestMLW();
+
+            app.UseTestMLW2();
 
             app.MapControllers();
 
