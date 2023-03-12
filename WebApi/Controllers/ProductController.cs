@@ -11,10 +11,9 @@ using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+
     [TestActionFilter]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseApiController
     {
         private readonly IProductRepository _repo;
         

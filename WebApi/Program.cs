@@ -1,14 +1,18 @@
 using Infrastructure.Data;
 using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Errors;
 using WebApi.Extensions;
 using WebApi.Filters;
 using WebApi.Helpers;
+using WebApi.MLW;
 
 namespace WebApi
 {
@@ -32,6 +36,23 @@ namespace WebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.Configure<ApiBehaviorOptions>(op =>
+            {
+                op.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var errors = actionContext.ModelState.Where(e => e.Value.Errors.Count > 0)
+                                                         .SelectMany(x => x.Value.Errors)
+                                                         .Select(x => x.ErrorMessage).ToArray();
+
+                    var errorResponse = new ApiValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+
+                    return new BadRequestObjectResult(errorResponse);
+                };
+            });
+
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
@@ -40,6 +61,8 @@ namespace WebApi
 
                 await DataSeeder.Initialize(services);
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -55,6 +78,8 @@ namespace WebApi
             app.UseTestMLW();        // for test purposes
 
             app.UseTestMLW2();       // for test purposes
+
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.MapControllers();
 
